@@ -1,0 +1,70 @@
+
+# Basic data visualization cheatsheet
+
+Yue Ma
+
+```{r}
+# histogram with added parameters
+hist(iris$Sepal.Length,
+main="Iris Sepal Length ",
+xlab="Iris sepal length",
+xlim=c(4,8),
+col="darkmagenta"
+)
+```
+
+
+```{r}
+barplot(iris$Sepal.Width)
+barplot(table(iris$Species,iris$Petal.Length),col=rainbow(3))
+```
+
+```{r}
+boxplot(iris$Sepal.Width)
+
+boxplot(iris$Sepal.Width~iris$Species,col= rainbow(3))
+```
+
+```{r}
+plot(iris$Sepal.Length)
+plot(iris$Sepal.Length,iris$Species)
+```
+
+```{r}
+plot(iris)
+```
+
+
+
+```{r}
+library(hexbin)
+library(RColorBrewer)
+
+x <- rnorm(mean=0, 1000)
+y <- rnorm(mean=1, 1000)
+
+bin<-hexbin(x, y, xbins=40)
+colors=colorRampPalette(rev(brewer.pal(11,'Spectral')))
+plot(bin , colramp=colors ) 
+```
+
+```{r}
+mosaicplot(HairEyeColor,shade=TRUE)
+```
+
+```{r}
+x = data.matrix(UScitiesD)
+heatmap(x,main = "Distance between US")
+```
+
+```{r}
+library(ggplot2)
+data(iris,package="ggplot2")
+
+theme_set(theme_bw())
+g<-ggplot(iris,aes(Sepal.Width,Species))
+g+geom_count(col="tomato3",show.ledegnd=F)+
+  labs(subtitle="Species vs width",
+       title="Counts plot")
+```
+
